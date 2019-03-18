@@ -144,6 +144,25 @@ public class RastgeleKarakter
         return KelimeDondur((int)RastgeleSayiUret()%10+1, geciciAlfabe);
     }
     
+    // karakterlerarasikelime methodunun kaç karakter olacağını da belli ettiğimiz overload edilmiş fonksiyon
+     public String KarakterArasiKelime(char a , char b , int sayi)
+    {
+        int sayi1, sayi2;
+        sayi1 = KarakterIndex(a);
+        sayi2 = KarakterIndex(b);
+        //eğer 1.karakterin indexi diğerinden büyükse yerlerini değiştirdiğimiz koşul. 
+        if(sayi1 > sayi2)
+        {
+            int gecici;
+            gecici = sayi1;
+            sayi1 = sayi2;
+            sayi2 = gecici;
+        }
+            
+        String geciciAlfabe =  alfabe.substring(sayi1, sayi2);
+        return KelimeDondur(sayi, geciciAlfabe);
+    }
+    
     // rastgele bir cümle döndüren metod.
     public String RastgeleCumle()
     {
@@ -152,7 +171,31 @@ public class RastgeleKarakter
         // rastgele olarak alınan boşluk sayısı kadar kelime üreten döngü
         for(int i = 0 ; i < kelimeSayi; i++)
         {
-            cumle += KelimeDondur((int)RastgeleSayiUret()%5+1) + " ";
+            cumle += KelimeDondur((int)RastgeleSayiUret()%8+1) + " ";
+        }
+        
+        return cumle;
+    }
+    // rastgele cümle döndüren metodun overload edilmiş hali. parametre olarak girilen sayı kadar kelime.
+    public String RastgeleCumle(int sayi)
+    {
+        String cumle = "";
+        // rastgele olarak alınan boşluk sayısı kadar kelime üreten döngü
+        for(int i = 0 ; i < sayi; i++)
+        {
+            cumle += KelimeDondur((int)RastgeleSayiUret()%8+1) + " ";
+        }
+        
+        return cumle;
+    }
+    // rastgele cümle döndüren metodun overload edilmiş hali. parametre olarak girilen sayı kadar kelime ve harf.
+    public String RastgeleCumle(int sayi , int harfsayi)
+    {
+        String cumle = "";
+        // rastgele olarak alınan boşluk sayısı kadar kelime üreten döngü
+        for(int i = 0 ; i < sayi; i++)
+        {
+            cumle += KelimeDondur(harfsayi) + " ";
         }
         
         return cumle;
@@ -164,6 +207,13 @@ public class RastgeleKarakter
         char[]a = karakterler.toCharArray();
         String geciciAlfabe = Sirala(a);
         return KelimeDondur((int)RastgeleSayiUret()%10+1, geciciAlfabe);
+    }
+    //karakterlerlekelime metodunun overload edilmiş hali. parametre olarak girilen sayı kadar harf.
+    public String KarakterlerleKelime(String karakterler , int sayi)
+    {
+        char[]a = karakterler.toCharArray();
+        String geciciAlfabe = Sirala(a);
+        return KelimeDondur(sayi, geciciAlfabe);
     }
     
     
